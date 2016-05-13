@@ -17,14 +17,19 @@ class ViewController: UIViewController {
     @IBAction func click(sender: AnyObject) {
         //self.lb.text  = tf.text
         self.myView.alpha = 0
+        
+        self.lb.transform = CGAffineTransformMakeScale(0.5, 0.5)
+        
         self.myView.setNeedsLayout()
         self.myView.layoutIfNeeded()
- 
         UIView.animateWithDuration(1.5, animations: {
                 self.myView.alpha = 1
+            
+            self.lb.transform = CGAffineTransformMakeScale(1.1, 1.1)
+            
             self.lb.snp_updateConstraints { (make) in
                 make.center.equalTo(self.myView)
-                make.margins.equalTo(EdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+                make.margins.equalTo(EdgeInsets(top: 20, left: 15, bottom: 20, right: 15))
             }
             
             self.myView.snp_updateConstraints(closure: { (make) in
@@ -50,6 +55,8 @@ class ViewController: UIViewController {
                             make.center.equalTo(self.myView)
                             make.margins.equalTo(EdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
                         }
+                        self.lb.transform = CGAffineTransformMakeScale(1, 1)
+                        
                         self.myView.snp_updateConstraints(closure: { (make) in
                             make.centerY.equalTo(self.myView.superview!)
                         })
@@ -83,7 +90,7 @@ class ViewController: UIViewController {
         }
         lb.snp_makeConstraints { (make) in
             make.center.equalTo(self.myView)
-            make.margins.equalTo(EdgeInsets(top: 10, left: 15, bottom: 10, right: 15))
+            make.margins.equalTo(EdgeInsets(top: 5, left: 5, bottom: 5, right: 5))
         }
     }
 
